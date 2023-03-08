@@ -39,15 +39,14 @@ const validateUpdateCard = celebrate({
     _id: Joi.string().required().hex().length(24),
   }),
   body: Joi.object().keys({
-    name: Joi.string().required(),
-    years: Joi.string().required(),
-    birthPlace: Joi.string().required(),
-    dutyStation: Joi.string().required(),
-    burialPlace: Joi.string().required(),
-    rank: Joi.string().required(),
+    name: Joi.string(),
+    years: Joi.string(),
+    birthPlace: Joi.string(),
+    dutyStation: Joi.string(),
+    burialPlace: Joi.string(),
+    rank: Joi.string(),
     award: Joi.array(),
     image: Joi.string()
-      .required()
       .custom((value, helpers) => {
         if (validator.isURL(value)) {
           return value;
@@ -55,7 +54,6 @@ const validateUpdateCard = celebrate({
         return helpers.message('Передана некорректная ссылка на фото героя');
       }),
     trailerLink: Joi.string()
-      .required()
       .custom((value, helpers) => {
         if (validator.isURL(value)) {
           return value;
@@ -64,8 +62,8 @@ const validateUpdateCard = celebrate({
           'Передана некорректная ссылка на трейлер фильма о герое',
         );
       }),
-    cardId: Joi.number().required(),
-    facts: Joi.array().required(),
+    cardId: Joi.number(),
+    facts: Joi.array(),
   }),
 });
 

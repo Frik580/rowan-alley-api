@@ -10,27 +10,27 @@ const awardSchema = new mongoose.Schema({
 const cardSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   years: {
     type: String,
-    required: true,
+    // required: true,
   },
   birthPlace: {
     type: String,
-    required: true,
+    // required: true,
   },
   dutyStation: {
     type: String,
-    required: true,
+    // required: true,
   },
   burialPlace: {
     type: String,
-    required: true,
+    // required: true,
   },
   rank: {
     type: String,
-    required: true,
+    // required: true,
   },
   award: [awardSchema],
   // awards: [String],
@@ -42,7 +42,7 @@ const cardSchema = new mongoose.Schema({
       },
       message: 'Передана некорректная ссылка на фото героя',
     },
-    required: true,
+    // required: true,
   },
   trailerLink: {
     type: String,
@@ -52,18 +52,18 @@ const cardSchema = new mongoose.Schema({
       },
       message: 'Передана некорректная ссылка на трейлер фильма о герое',
     },
-    required: true,
+    // required: true,
   },
   cardId: {
     type: Number,
     unique: true,
-    required: true,
+    // required: true,
   },
   facts: [String],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'admin',
-    required: true,
+    // required: true,
   },
 });
 

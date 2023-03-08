@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  createAdmin,
+  // createAdmin,
   login,
   deleteAdmin,
   getAllAdmins,
@@ -8,7 +8,7 @@ const {
 const { getAllCards } = require('../contollers/card');
 const { createUser } = require('../contollers/users');
 const {
-  validateCreateAdmin,
+  // validateCreateAdmin,
   validateLogin,
   validateDeleteAdmin,
   validateCreateUser,
@@ -20,20 +20,21 @@ const cardRouter = require('./card');
 
 const { NotFound } = require('../errors/notfound');
 
-router.post('/signup', validateCreateAdmin, createAdmin);
+// router.post('/signup', validateCreateAdmin, createAdmin);
 router.post('/signin', validateLogin, login);
 router.post('/users', validateCreateUser, createUser);
 router.get('/cards', getAllCards);
 
-router.use(auth);
+// router.use(auth);
 
-router.get('/admin', getAllAdmins);
-router.delete('/admin/:_id', validateDeleteAdmin, deleteAdmin);
+router.get('/admin', auth, getAllAdmins);
+router.delete('/admin/:_id', auth, validateDeleteAdmin, deleteAdmin);
 
-router.use('/', usersRouter);
-router.use('/', cardRouter);
+router.use('/', auth, usersRouter);
+router.use('/', auth, cardRouter);
 
 router.use('*', () => {
   throw new NotFound(NOT_FOUND);
 });
+
 module.exports = router;
